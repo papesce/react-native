@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 
 class Greeting extends Component {
@@ -53,12 +53,34 @@ class FixedDimensionsBasics extends Component {
 class FlexDimensionsBasics extends Component {
   render () {
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center',
+      alignItems: 'baseline'}}>
         <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
-         <View style={{flex: 1, backgroundColor: 'blue', marginBottom: 20}}/>
+         <View style={{width:50, height:50, backgroundColor: 'blue', marginBottom: 20}}/>
           <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
       </View>
     );
+  }
+}
+
+class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: "nothing typed"};
+  }
+  render() {
+    return (<View>
+         <Text>{this.state.text}</Text>
+         <TextInput style={{height:40}} 
+         placeholder="Type here to translate!"
+         onChangeText={this.textChanged.bind(this)}/>
+    </View>);
+  }
+  textChanged(text) {
+    let text2 = text.split(' ').map( (word) => {  
+      return 'pizza';
+    }).join(' ');
+    this.setState({text: text2})
   }
 }
 
@@ -67,7 +89,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlexDimensionsBasics/>
+         <PizzaTranslator/>          
       </View>
     );
   }
@@ -78,8 +100,8 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     flex: 1,
     backgroundColor: '#fff',
-    //alignItems: 'center',
-    //justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   red: {
     color: 'red',
