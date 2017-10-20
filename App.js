@@ -30,6 +30,16 @@ class Blinking extends Component {
    }
 }
 
+class LotsOfStyles extends Component {
+    render() {
+      return (<View>
+            <Text style={styles.red}> just red</Text>  
+
+        </View>
+      );
+    }
+}
+
 
 export default class App extends React.Component {
   render() {
@@ -37,7 +47,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
          <Greeting name='Pablo'/>
          <Greeting name='Valeria'/>
-         <Blinking text="Blinking!"/>
+        <LotsOfStyles/>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
@@ -53,4 +63,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  red: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 16
+  }
 });
