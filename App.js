@@ -53,8 +53,10 @@ class FixedDimensionsBasics extends Component {
 class FlexDimensionsBasics extends Component {
   render () {
     return (
-      <View >
-        <View style={{flex: 1, backgroundColor: 'lightblue'}}/>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
+         <View style={{flex: 1, backgroundColor: 'blue', marginBottom: 20}}/>
+          <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
       </View>
     );
   }
@@ -65,11 +67,6 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-         <Greeting name='Pablo'/>
-         <Greeting name='Valeria'/>
-        <LotsOfStyles/>
-        <Text>Open up App.js to start working on your app!</Text>
-        <FixedDimensionsBasics/>
         <FlexDimensionsBasics/>
       </View>
     );
@@ -78,10 +75,11 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'center',
+    //justifyContent: 'center',
   },
   red: {
     color: 'red',
