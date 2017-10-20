@@ -10,24 +10,26 @@ class Greeting extends Component {
   }
 }
 
-class Blink extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {showText: true};
+class Blinking extends Component {
+   constructor(props) {
+     super(props)
+      this.state = { showText: true };  
 
-    setInterval(() => {
-      this.setState(previousState => {
-        return { showText: !previousState.showText };
-      });
-    }, 1000);
-  }
-  render() {
-    let display = this.state.showText ? this.props.text : '';
-    return (
-      <Text>{display}</Text>
-    );
-  }
+      setInterval( this.flipValue.bind(this), 1000);
+   }
+   flipValue() {
+     this.setState( (previousState) => {
+        return {showText : !previousState.showText};
+     })
+   }
+
+   render() {
+     let text = this.state.showText ? this.props.text : 'nothing'
+     return <Text>{text}</Text>
+     //return <Text>{this.props.text}</Text>
+   }
 }
+
 
 export default class App extends React.Component {
   render() {
@@ -35,7 +37,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
          <Greeting name='Pablo'/>
          <Greeting name='Valeria'/>
-         <Blink text="Blinking!"/>
+         <Blinking text="Blinking!"/>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
