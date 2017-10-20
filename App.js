@@ -34,10 +34,30 @@ class LotsOfStyles extends Component {
     render() {
       return (<View>
             <Text style={styles.red}> just red</Text>  
-
         </View>
       );
     }
+}
+
+class FixedDimensionsBasics extends Component {
+  render() {
+    return  (
+      <View>
+        <View style={{width:50, height:50, backgroundColor: 'skyblue'}}>
+        </View>
+      </View>
+    );
+  }
+} 
+
+class FlexDimensionsBasics extends Component {
+  render () {
+    return (
+      <View >
+        <View style={{flex: 1, backgroundColor: 'lightblue'}}/>
+      </View>
+    );
+  }
 }
 
 
@@ -49,8 +69,8 @@ export default class App extends React.Component {
          <Greeting name='Valeria'/>
         <LotsOfStyles/>
         <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <FixedDimensionsBasics/>
+        <FlexDimensionsBasics/>
       </View>
     );
   }
