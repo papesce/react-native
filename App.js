@@ -1,95 +1,34 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Alert, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback,
+  StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 
-class Greeting extends Component {
-  render() {
-    return (
-      <Text>Hello {this.props.name}!</Text>
-    );
-  }
-}
 
-class Blinking extends Component {
-   constructor(props) {
-     super(props)
-      this.state = { showText: true };  
 
-      setInterval( this.flipValue.bind(this), 1000);
-   }
-   flipValue() {
-     this.setState( (previousState) => {
-        return {showText : !previousState.showText};
-     })
-   }
 
-   render() {
-     let text = this.state.showText ? this.props.text : 'nothing'
-     return <Text>{text}</Text>
-     //return <Text>{this.props.text}</Text>
-   }
-}
-
-class LotsOfStyles extends Component {
-    render() {
-      return (<View>
-            <Text style={styles.red}> just red</Text>  
-        </View>
-      );
-    }
-}
-
-class FixedDimensionsBasics extends Component {
-  render() {
-    return  (
-      <View>
-        <View style={{width:50, height:50, backgroundColor: 'skyblue'}}>
-        </View>
-      </View>
-    );
-  }
-} 
-
-class FlexDimensionsBasics extends Component {
-  render () {
-    return (
-      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center',
-      alignItems: 'baseline'}}>
-        <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
-         <View style={{width:50, height:50, backgroundColor: 'blue', marginBottom: 20}}/>
-          <View style={{width:50, height:50, backgroundColor: 'lightblue'}}/>
-      </View>
-    );
-  }
-}
-
-class PizzaTranslator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {text: "nothing typed"};
-  }
-  render() {
-    return (<View>
-         <Text>{this.state.text}</Text>
-         <TextInput style={{height:40}} 
-         placeholder="Type here to translate!"
-         onChangeText={this.textChanged.bind(this)}/>
-    </View>);
-  }
-  textChanged(text) {
-    let text2 = text.split(' ').map( (word) => {  
-      return 'pizza';
-    }).join(' ');
-    this.setState({text: text2})
-  }
-}
 
 
 export default class App extends React.Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!');
+  }
+  _onLongPressButton() {
+    Alert.alert('You long press button');
+  }
+
   render() {
     return (
       <View style={styles.container}>
-         <PizzaTranslator/>          
+        <TouchableHighlight onPress={this._onPressButton} underlayColor="blue">
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Touchable Hihloght</Text>
+          </View>  
+        </TouchableHighlight>
+        <TouchableOpacity onPress={this._onPressButton}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Touchable Opacity</Text>
+          </View>  
+        </TouchableOpacity>
       </View>
     );
   }
@@ -107,5 +46,23 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold',
     fontSize: 16
+  },
+   buttonContainer: {
+    margin: 20
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
+    backgroundColor: '#2196F3'
+  },
+  buttonText: {
+    padding: 20,
+    color: 'white'
   }
 });
